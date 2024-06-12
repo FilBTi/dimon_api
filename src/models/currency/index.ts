@@ -4,7 +4,7 @@ import { Optional } from "sequelize";
 // import Promotion from '../promotion';
 
 
-export type CurrancyAtributes = {
+export type CurrencyAtributes = {
     id: number,
     name: string,
     price: number,
@@ -17,10 +17,10 @@ export enum CategoryName {
     STABLECOIN = "STABLECOIN",
 };
 
-export type CurrancyCreationAttributes = Optional<CurrancyAtributes, 'id'>;
+export type CurrancyCreationAttributes = Optional<CurrencyAtributes, 'id'>;
 
 @Table
-export class Currancy extends Model<CurrancyAtributes, CurrancyCreationAttributes> {
+export class Currency extends Model<CurrencyAtributes, CurrancyCreationAttributes> {
     @PrimaryKey
     @AutoIncrement
     @Column
@@ -42,4 +42,4 @@ export class Currancy extends Model<CurrancyAtributes, CurrancyCreationAttribute
 
 }
 
-export default Currancy
+export default Currency

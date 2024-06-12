@@ -1,16 +1,16 @@
 import { Request, Response } from "express";
-import CurrancyServic from "../../service/currency";
+import CurrencyServic from "../../service/currency";
 
-export default class CurrancyController {
-    private currancycontroller: CurrancyServic;
+export default class CurrencyController {
+    private currencycontroller: CurrencyServic;
 
     constructor(){
-        this.currancycontroller = new CurrancyServic()
+        this.currencycontroller = new CurrencyServic()
     };
 
     get = async (req: Request, res:Response) => { 
         try{
-            const product = await this.currancycontroller.getAll();
+            const product = await this.currencycontroller.getAll();
             res.status(200).send(product)
         }catch (err){
             console.log(err);
@@ -20,8 +20,8 @@ export default class CurrancyController {
 
     getId = async (req: Request, res: Response) => {
         try{
-            const id: number = +req.params.id
-            const result = await this.currancycontroller.getById(id);
+            const id: number = Number(req.params.id);
+            const result = await this.currencycontroller.getById(id);
             if(result === null){
                 res.status(404).send(`Not found product`);
                 return
@@ -35,9 +35,7 @@ export default class CurrancyController {
 
     create = async (req: Request, res: Response) => {
         try{
-            console.log(req.body)
-            // const 
-            const product = await this.currancycontroller.createCurrancy(req.body);
+            const product = await this.currencycontroller.createCurrancy(req.body);
             res.status(200).send(product);
         }catch(err){
             console.log(err);
@@ -47,8 +45,8 @@ export default class CurrancyController {
 
     getPrice = async (req: Request, res: Response) => {
         try{
-            const id: number = +req.params.id
-            const result = await this.currancycontroller.getById(id);
+            const id: number = Number(req.params.id);
+            const result = await this.currencycontroller.getById(id);
             if(result === null){
                 res.status(404).send(`Not found product`);
                 return
@@ -62,8 +60,8 @@ export default class CurrancyController {
 
     update = async (req: Request, res: Response) => {
         try{
-            const id = req.body.id;
-            const result = await this.currancycontroller.updatePrice(id, req.body.price);
+            const id: number = Number(req.body.id);
+            const result = await this.currencycontroller.updatePrice(id, req.body.price);
             res.status(200).send(`update \n ${result}`);
         }catch (err) {
             res.status(400).send(err);

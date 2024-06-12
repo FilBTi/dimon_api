@@ -19,7 +19,7 @@ export default class BalanceController{
 
     getById = async (req: Request, res: Response) => {
         try{
-            const result = await this.balancetcontroller.getById(+req.params.id);
+            const result = await this.balancetcontroller.getById(Number(req.params.id));
             res.status(200).send(result);
         }catch (err){
             res.status(400).send(err);
@@ -28,7 +28,7 @@ export default class BalanceController{
 
     getByUserId = async (req: Request, res: Response) => {
         try{ 
-            const result = await this.balancetcontroller.getByUserId(+req.params.id);
+            const result = await this.balancetcontroller.getByUserId(Number(req.params.id));
             res.status(200).send(result)
         }catch(err){
             res.status(400).send(err)
@@ -47,7 +47,7 @@ export default class BalanceController{
 
     update = async (req: Request, res: Response) => {
         try{
-            const result = await this.balancetcontroller.update(+req.params.id, req.body.product);
+            const result = await this.balancetcontroller.update(Number(req.params.id), req.body.product);
             res.status(200).send(result);
         }catch (err){
             res.status(400).send(err);

@@ -22,7 +22,7 @@ class UserController {
 
     getId = async (req: Request, res: Response) => {
         try{
-            const id: number = +req.params.id
+            const id: number = Number(req.params.id)
             const result = await this.userservis.getById(id);
             if(result === null){
                 res.status(404).send(`Not found user`);
@@ -45,7 +45,7 @@ class UserController {
 
     updatePas = async ( req: Request, res: Response) => {
         try{
-            const user = await this.userservis.updatePassword(+req.params.id, req.body);
+            const user = await this.userservis.updatePassword(Number(req.params.id), req.body);
             if(user === null){
                 res.status(404).send(`Not found user`);
                 return
@@ -58,7 +58,7 @@ class UserController {
 
     updateEmail = async (req: Request, res: Response) => {
         try{
-            const user = await this.userservis.updateEmail(+req.params.id, req.body);
+            const user = await this.userservis.updateEmail(Number(req.params.id), req.body);
             if(user === null){
                 res.status(404).send(`Not found user`);
                 return

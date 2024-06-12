@@ -10,7 +10,7 @@ class HistoryControll {
 
     get = async (req: Request, res: Response) => {
         try{
-            const result = await this.historycontrol.getById(+req.params.id);
+            const result = await this.historycontrol.getById(Number(req.params.id));
             res.status(200).send(result);
         }catch{
             res.status(400).send(Error)

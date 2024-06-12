@@ -1,10 +1,10 @@
-import Currancy , { CurrancyCreationAttributes }  from "../../models/currency";
+import Currency , { CurrancyCreationAttributes }  from "../../models/currency";
 import History from "../../models/history";
 
-class CurrancyServic {
+class CurrencyServic {
     async getAll(){
         try{
-            const result = Currancy.findAll();
+            const result = Currency.findAll();
             return result != undefined ? result : 'Sorry yuor DB is empty';
         }catch (err){
             console.log(err);
@@ -13,7 +13,7 @@ class CurrancyServic {
 
     async getById(id: number){
         try{
-            const result : any = await Currancy.findByPk(id);
+            const result : any = await Currency.findByPk(id);
             return result;
         }catch (err){
             console.log(err);
@@ -21,9 +21,9 @@ class CurrancyServic {
         }
     };
 
-    async createCurrancy(currencyData: CurrancyCreationAttributes): Promise<Currancy>{
+    async createCurrancy(currencyData: CurrancyCreationAttributes): Promise<Currency>{
         try{
-            const currency = await Currancy.create(currencyData);
+            const currency = await Currency.create(currencyData);
             return currency;
         }catch (err) {
             console.log(err);
@@ -33,9 +33,9 @@ class CurrancyServic {
 
     async updatePrice(currencyId: number, newPrice: number){
         try{
-            const laterPrice: any = await Currancy.findByPk(currencyId);
+            const laterPrice: any = await Currency.findByPk(currencyId);
             const historyItem = await History.create({ ...laterPrice, idCurrency: laterPrice.id, nameCur: laterPrice.name, priceCur: laterPrice.price});
-            const result: any = await Currancy.update(
+            const result: any = await Currency.update(
                 {price: newPrice},
                 {where: {id: currencyId}}
             );
@@ -48,7 +48,7 @@ class CurrancyServic {
 
     async delete(id: number){
         try{
-            const result = await Currancy.destroy({where:{id: id}});
+            const result = await Currency.destroy({where:{id: id}});
             return result;
         }catch{
             return Error
@@ -57,4 +57,4 @@ class CurrancyServic {
 
 }
 
-export default CurrancyServic
+export default CurrencyServic

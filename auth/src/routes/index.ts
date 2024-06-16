@@ -1,0 +1,13 @@
+import Express  from "express";
+import userRout from './user';
+// import { auth } from "../middelwaers/auth";
+
+
+const rout: Express.Router = Express.Router();
+
+rout.use('/users', userRout);
+
+
+
+export default rout;
+
